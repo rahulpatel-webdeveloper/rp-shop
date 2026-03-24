@@ -9,7 +9,7 @@ export default function Contact() {
               subtitle="Contact Us"
               backgroundImage="https://images.unsplash.com/photo-1516534775068-bb57a2b7d9d3?w=1200&h=400&fit=crop&crop=center&q=80&ixlib=rb-4.0.3&auto=format"
             />
-            <div className="container" style={{ maxWidth: '600px' }}>
+            <div className="container" style={{ maxWidth: '700px' }}>
                 <div className="text-center mb-5">
                     <h2 className="display-5 fw-bold mb-3 text-dark">We'd Love to Hear From You</h2>
                     <p className="lead text-muted">Have a question? Send us a message and we'll respond shortly.</p>

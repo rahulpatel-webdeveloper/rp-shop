@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
+import '../styles/Wishlist.css';
 
 export default function ProductCard({ product }) {
     const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
     const handleAddToCart = () => {
         addToCart(product, 1);
@@ -11,7 +14,24 @@ export default function ProductCard({ product }) {
 
     return (
         <div className='container'>
-            <div className="card h-100 shadow-sm border-0 transition-hover">
+            <div className="card h-100 shadow-sm border-0 transition-hover position-relative">
+                <button
+                    type="button"
+                    className={`wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                    title="Add to wishlist"
+                    onClick={() =>
+                        toggleWishlist({
+                            id: product.id,
+                            name: product.name,
+                            image: product.image,
+                            price: product.price,
+                            category: product.category,
+                            description: product.description
+                        })
+                    }
+                >
+                    {isInWishlist(product.id) ? '❤' : '♡'}
+                </button>
                 <div className="card-img-top bg-light p-4 d-flex align-items-center justify-content-center" style={{ height: '250px' }}>
                     <img src={product.image} alt={product.name} className="img-fluid" style={{ maxHeight: '100%', objectFit: 'contain' }} />
                 </div>

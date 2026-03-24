@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { convertToINR, formatINRPrice } from '../utils/currencyUtils';
 import '../styles/PopularProducts.css';
+import '../styles/Wishlist.css';
 
 export default function PopularProducts() {
     const [products, setProducts] = useState([]);
@@ -11,6 +13,7 @@ export default function PopularProducts() {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
     const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
     const badges = ['Hot', 'Sale', 'New', 'Hot', 'Sale'];
 
@@ -129,6 +132,24 @@ export default function PopularProducts() {
                                     <div className={`product-badge badge-${product.badge.toLowerCase()}`}>
                                         {product.badge}
                                     </div>
+                                    <button
+                                        type="button"
+                                        className={`wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                                        title="Add to wishlist"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            toggleWishlist({
+                                                id: product.id,
+                                                name: product.name,
+                                                image: product.image,
+                                                price: product.price,
+                                                category: product.category,
+                                                description: product.description
+                                            });
+                                        }}
+                                    >
+                                        {isInWishlist(product.id) ? '❤' : '♡'}
+                                    </button>
 
                                     {/* Image Container */}
                                     <div className="product-image-container">

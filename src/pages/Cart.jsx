@@ -127,9 +127,9 @@ export default function Cart() {
                             </div>
 
                             {/* Checkout Button */}
-                            <button className="btn btn-dark btn-lg w-100 py-3 mt-4">
+                            <Link to="/checkout" className="btn btn-dark btn-lg w-100 py-3 mt-4">
                                 Proceed to Checkout
-                            </button>
+                            </Link>
 
                             <Link to="/products" className="btn btn-outline-secondary btn-lg w-100 py-3 mt-2">
                                 Continue Shopping
